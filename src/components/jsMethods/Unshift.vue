@@ -4,9 +4,9 @@
       @mouseenter="hover = true"
       @mouseleave="hover = false"
       @click="clicked"
-      class="bg-green-600 px-8 py-1 rounded-sm"
+      class="bg-green-600 w-32 h-8 rounded-sm"
     >
-      array.unshift({{ arr[0] - 1 || 0 }})
+      array.unshift({{ getValue || 0 }})
     </button>
     <Hover v-if="hover">Add element to the beginning</Hover>
   </div>
@@ -25,13 +25,30 @@ export default {
   methods: {
     clicked() {
       if (this.arr.length) {
-        this.arr.unshift(this.arr[0] - 1);
-      }
+          const length = this.arr.length
+          if (length > 1 && this.arr[1] < this.arr[0]) {
+            this.arr.unshift(this.arr[0] + 1)
+          } else {
+            this.arr.unshift(this.arr[0] - 1)
+          }
+        }
       else {
         this.arr.push(0);
       }
     },
   },
+  computed: {
+      getValue() {
+        if (this.arr.length) {
+          if (this.arr.length > 1) {
+            if (this.arr[1] < this.arr[0]) {
+              return this.arr[0] + 1 
+            }
+            return this.arr[0] - 1
+          }
+        }
+      },
+    },
   components: { Hover },
 }
 </script>

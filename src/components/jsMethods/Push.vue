@@ -4,9 +4,9 @@
       @mouseenter="hover = true"
       @mouseleave="hover = false"
       @click="clicked"
-      class="bg-green-600 px-8 py-1 rounded-sm"
+      class="bg-green-600 w-32 h-8 rounded-sm"
     >
-      array.push({{ arr[arr.length - 1] + 1 || 0 }})
+      array.push({{ getValue || 0 }})
     </button>
     <Hover v-if="hover">Add element at last</Hover>
   </div>
@@ -20,17 +20,35 @@ export default {
     data() {
       return {
         hover: false,
+        value: 5,
       }
     },
     methods: {
-        clicked() {
-            if (this.arr.length) {
-                this.arr.push(this.arr[this.arr.length - 1] + 1);
+      clicked() {
+        if (this.arr.length) {
+          const length = this.arr.length
+          if (length > 1 && this.arr[length - 1] < this.arr[length-2]) {
+            this.arr.push(this.arr[length - 1] - 1)
+          } else {
+            this.arr.push(this.arr[length - 1] + 1)
+          }
+        }
+        else {
+          this.arr.push(0);
+        }
+      },
+    },
+    computed: {
+      getValue() {
+        if (this.arr.length) {
+          if (this.arr.length > 1) {
+            if (this.arr[this.arr.length - 1] < this.arr[this.arr.length - 2]) {
+              return this.arr[this.arr.length - 1] - 1 
             }
-            else {
-                this.arr.push(0);
-            }
-        },
+            return this.arr[this.arr.length - 1] + 1
+          }
+        }
+      },
     },
     components: { Hover }
 }

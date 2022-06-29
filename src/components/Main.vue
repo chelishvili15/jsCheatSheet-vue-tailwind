@@ -11,11 +11,16 @@
         <p class="absolute -bottom-6 text-green-600">{{ index }}</p>
       </div>
     </transition-group>  
-    <div class="flex space-x-3">
+    <div class="flex flex-col space-y-10">
+      <div class="flex space-x-3">
         <Push :arr="arr" />
         <Pop :arr="arr" />
         <Unshift :arr="arr" />
         <Shift :arr="arr" /> 
+      </div>
+      <div class="flex space-x-3">
+        <Reverse :arr="arr" />
+      </div>
     </div>
   </div>
 </template>
@@ -25,6 +30,8 @@ import Push from './jsMethods/Push.vue'
 import Pop from './jsMethods/Pop.vue';
 import Unshift from './jsMethods/Unshift.vue';
 import Shift from './jsMethods/Shift.vue';
+import Reverse from './jsMethods/Reverse.vue';
+
 export default {
     data() {
         return {
@@ -53,7 +60,7 @@ export default {
             }
         },
     },
-    components: { Push, Pop, Unshift, Shift }
+    components: { Push, Pop, Unshift, Shift, Reverse }
 }
 </script>
 

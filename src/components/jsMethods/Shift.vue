@@ -4,7 +4,7 @@
       @mouseenter="hover = true"
       @mouseleave="hover = false"
       @click="clicked"
-      class="bg-green-600 px-8 py-1 rounded-sm"
+      class="bg-green-600 w-32 h-8 rounded-sm"
     >
       array.shift()
     </button>
