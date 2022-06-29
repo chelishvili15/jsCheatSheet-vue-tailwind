@@ -12,56 +12,48 @@
       </div>
     </transition-group>  
     <div class="flex space-x-3">
-        <button @click="pushClicked" class="bg-green-600 px-8 py-1 rounded-sm">
-          array.push({{ arr[arr.length - 1] + 1 || 0 }})
-        </button>
-        <button @click="popClicked" class="bg-green-600 px-8 py-1 rounded-sm">
-          array.pop()
-        </button>
-        <button @click="shiftClicked" class="bg-green-600 px-8 py-1 rounded-sm">
-          array.shift()
-        </button>
-        <button @click="unshiftClicked" class="bg-green-600 px-8 py-1 rounded-sm">
-          array.unshift({{ arr[0] - 1 || 0}})
-        </button>
+        <Push :arr="arr" />
+        <Pop :arr="arr" />
+        <Unshift :arr="arr" />
+        <Shift :arr="arr" /> 
     </div>
   </div>
 </template>
 
 <script>
+import Push from './jsMethods/Push.vue'
+import Pop from './jsMethods/Pop.vue';
+import Unshift from './jsMethods/Unshift.vue';
+import Shift from './jsMethods/Shift.vue';
 export default {
-  data() {
-    return {
-      arr: [1,2,3,4]
-    }
-  },
-  methods: {
-    pushClicked() {
-      if (this.arr.length) {
-        this.arr.push(this.arr[this.arr.length - 1] + 1)
-      } else {
-        this.arr.push(0)
-      }
+    data() {
+        return {
+            arr: [1, 2, 3, 4]
+        };
     },
-    popClicked() {
-      this.arr.pop()
+    methods: {
+        
+        popClicked() {
+            this.arr.pop();
+        },
+        shiftClicked() {
+            this.arr.shift();
+            this.arr.map((val, index) => {
+                if (index > 0) {
+                    return val;
+                }
+            });
+        },
+        unshiftClicked() {
+            if (this.arr.length) {
+                this.arr.unshift(this.arr[0] - 1);
+            }
+            else {
+                this.arr.push(0);
+            }
+        },
     },
-    shiftClicked() {
-      this.arr.shift()
-      this.arr.map((val, index) => {
-        if (index > 0) {
-          return val
-        }
-      })
-    },
-    unshiftClicked() {
-      if (this.arr.length) {
-        this.arr.unshift(this.arr[0] - 1)
-      } else {
-        this.arr.push(0)
-      }
-    },
-  },
+    components: { Push, Pop, Unshift, Shift }
 }
 </script>
 
