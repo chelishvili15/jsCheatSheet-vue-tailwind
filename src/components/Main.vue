@@ -1,13 +1,14 @@
 <template>
   <div class="bg-yellow-100 flex items-center justify-center h-screen pl-64 flex-col space-y-10">
     <p class="text-green-600 transform translate-y-10">array</p>
-    <transition-group class="flex space-x-5 boxes px-8 py-3" name="boxes" tag="div">
+    <transition-group tag="div" name="fade" class="flex space-x-5 boxes px-8 pt-3 pb-7">
       <div
-        v-for="(box,index) in arr"
-        :key="index"
-        class="h-10 w-10 bg-green-600 flex items-center justify-center rounded-sm"
+        v-for="(item, index) in arr"
+        :key="item"
+        class="h-10 w-10 bg-green-600 flex items-center justify-center rounded-sm relative"
       >
-        {{ box }}
+        {{ item }}
+        <p class="absolute -bottom-6 text-green-600">{{ index }}</p>
       </div>
     </transition-group>  
     <div class="flex space-x-3">
@@ -65,12 +66,15 @@ export default {
 </script>
 
 <style>
-.boxes-enter-active, .boxes-leave-active {
+.fade-move,
+.fade-enter-active, 
+.fade-leave-active {
   transition: all 1s ease;
 }
-.boxes-enter-from, .boxes-leave-to {
-  opacity: 0.1;
-  transform: translateX(20px);
+.fade-enter-from, 
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0.01);
 }
 .boxes {
   box-shadow: 
