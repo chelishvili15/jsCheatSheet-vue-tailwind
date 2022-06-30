@@ -27,7 +27,7 @@ export default {
       clicked() {
         if (this.arr.length) {
           const length = this.arr.length
-          if (length > 1 && this.arr[length - 1] < this.arr[length-2]) {
+          if (length > 0 && this.arr[length - 1] < this.arr[length-2]) {
             this.arr.push(this.arr[length - 1] - 1)
           } else {
             this.arr.push(this.arr[length - 1] + 1)
@@ -41,7 +41,7 @@ export default {
     computed: {
       getValue() {
         if (this.arr.length) {
-          if (this.arr.length > 1) {
+          if (this.arr.length > 0) {
             if (this.arr[this.arr.length - 1] < this.arr[this.arr.length - 2]) {
               return this.arr[this.arr.length - 1] - 1 
             }

@@ -20,6 +20,7 @@
       </div>
       <div class="flex space-x-3">
         <Reverse :arr="arr" />
+        <Reduce :arr="arr" />
       </div>
     </div>
   </div>
@@ -31,6 +32,7 @@ import Pop from './jsMethods/Pop.vue';
 import Unshift from './jsMethods/Unshift.vue';
 import Shift from './jsMethods/Shift.vue';
 import Reverse from './jsMethods/Reverse.vue';
+import Reduce from './jsMethods/Reduce.vue';
 
 export default {
     data() {
@@ -60,7 +62,7 @@ export default {
             }
         },
     },
-    components: { Push, Pop, Unshift, Shift, Reverse }
+    components: { Push, Pop, Unshift, Shift, Reverse, Reduce }
 }
 </script>
 

@@ -26,7 +26,7 @@ export default {
     clicked() {
       if (this.arr.length) {
           const length = this.arr.length
-          if (length > 1 && this.arr[1] < this.arr[0]) {
+          if (length > 0 && this.arr[1] < this.arr[0]) {
             this.arr.unshift(this.arr[0] + 1)
           } else {
             this.arr.unshift(this.arr[0] - 1)
@@ -40,7 +40,7 @@ export default {
   computed: {
       getValue() {
         if (this.arr.length) {
-          if (this.arr.length > 1) {
+          if (this.arr.length > 0) {
             if (this.arr[1] < this.arr[0]) {
               return this.arr[0] + 1 
             }
